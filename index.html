@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fietsenmaker Leeromgeving</title>
+
+<style>
+:root {
+  --bg: #171a1e;
+  --panel: #22272d;
+  --panel2: #292f36;
+  --orange: #f28c28;
+  --white: #f4f5f6;
+  --muted: #a1a9b2;
+  --border: #363d45;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.app { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 255px;
+  background: #202429;
+  border-right: 1px solid var(--border);
+  padding: 22px 14px;
+  flex-shrink: 0;
+  transition: width .25s;
+}
+
+.logo {
+  padding: 8px 12px 25px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.logo-mark {
+  color: var(--orange);
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.logo small {
+  display: block;
+  color: var(--muted);
+  margin-top: 5px;
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+
+.nav-label {
+  color: #77818b;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  padding: 12px;
+}
+
+.nav-button {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: #c5cbd1;
+  text-align: left;
+  padding: 11px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 13px;
+  margin: 2px 0;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.nav-button:hover { background: var(--panel2); }
+
+.nav-button.active {
+  background: #3a3025;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.nav-icon { width: 20px; text-align: center; }
+
+.main { flex: 1; min-width: 0; }
+
+.topbar {
+  height: 70px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  background: #1c2025;
+}
+
+.topbar-title { font-size: 13px; color: var(--muted); }
+
+.topbar-right {
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.content { padding: 32px; max-width: 1450px; margin: auto; }
+
+h1 { font-size: 27px; margin: 0 0 8px; }
+h2 { font-size: 17px; margin: 0 0 16px; }
+h3 { font-size: 14px; margin: 0 0 8px; }
+
+.subtitle { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 21px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.welcome {
+  background: linear-gradient(120deg, #30343a, #252a30);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--orange);
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.welcome h1 { margin-bottom: 9px; }
+.welcome p { color: var(--muted); font-size: 13px; margin: 0; }
+
+.progress-number {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--orange);
+}
+
+.progress-track {
+  height: 7px;
+  background: #41474e;
+  border-radius: 20px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--orange);
+  border-radius: 20px;
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 15px;
+}
+
+.tile {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  transition: .2s;
+  min-height: 145px;
+}
+
+.tile:hover {
+  border-color: var(--orange);
+  transform: translateY(-2px);
+}
+
+.tile-icon { font-size: 27px; margin-bottom: 15px; }
+.tile h3 { font-size: 14px; }
+.tile p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.tile small { color: var(--orange); font-size: 11px; }
+
+.chapter {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.chapter-head {
+  padding: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.chapter-head:hover { background: var(--panel2); }
+
+.chapter-lessons {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 10px 17px;
+}
+
+.chapter.open .chapter-lessons { display: block; }
+
+.lesson {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  border-bottom: 1px solid #343b42;
+}
+
+.lesson:last-child { border: 0; }
+
+.lesson button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 5px;
+  padding: 6px 9px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.lesson button.done {
+  border-color: #568d68;
+  color: #8ed3a2;
+}
+
+.orange-button {
+  background: var(--orange);
+  color: #171a1e;
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.mobile-menu { display: none; }
+
+@media(max-width: 800px) {
+  .sidebar {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: -270px;
+    transition: left .25s;
+    overflow-y: auto;
+  }
+  .sidebar.show { left: 0; }
+  .mobile-menu { display: block; }
+  .content { padding: 20px 15px; }
+  .topbar { padding: 0 15px; }
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<aside class="sidebar" id="sidebar">
+  <div class="logo">
+    <div class="logo-mark">⚙ FIETSACADEMIE</div>
+    <small>MIJN PERSOONLIJKE LEEROMGEVING</small>
+  </div>
+
+  <div class="nav-label">HOOFDMENU</div>
+  <nav id="navigation"></nav>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <button class="orange-button mobile-menu" onclick="toggleMenu()">☰</button>
+    <div class="topbar-title">Mijn fietsenmaker leeromgeving</div>
+    <div class="topbar-right">● MIJN WERKPLAATS</div>
+  </header>
+
+  <div class="content" id="page"></div>
+</main>
+
+</div>
+
+<script>
+const menu = [
+  ["dashboard", "⌂", "Dashboard"],
+  ["opleiding", "▤", "Mijn opleiding"],
+  ["techniek", "⚙", "Fietstechniek"],
+  ["reparaties", "🔧", "Reparaties"],
+  ["notities", "▧", "Mijn notities"],
+  ["praktijk", "🛠", "Praktijk & werkzaamheden"],
+  ["planning", "▦", "Planning & voortgang"],
+  ["oefenen", "✎", "Oefenen & toetsen"],
+  ["bestanden", "▣", "Bestanden"]
+];
+
+const techniek = [
+  ["Fietstypen", "🚲", "Stadsfietsen, racefietsen, mountainbikes en meer."],
+  ["Aandrijving & versnellingen", "⚙", "Ketting, tandwielen, derailleurs en versnellingen."],
+  ["Remsystemen", "◉", "Schijfremmen, velgremmen en remtechniek."],
+  ["Wielen & banden", "◎", "Wielopbouw, spaken, naven en banden."],
+  ["Elektrische fietstechniek", "⚡", "Motoren, accu's, sensoren en elektronica."],
+  ["Frames & constructie", "▱", "Framebouw, materialen en verbindingen."],
+  ["Interactieve fietsen", "🚲", "Ontdek de onderdelen van fietsen."]
+];
+
+const subpages = {
+  opleiding: ["Cursusoverzicht", "Alle hoofdstukken", "Alle lessen", "Mijn leerdoelen", "Opdrachten & huiswerk"],
+  reparaties: ["Reparatiehandleidingen", "Stappenplannen", "Benodigd gereedschap", "Reparaties per fietsonderdeel", "Mijn uitgevoerde reparaties"],
+  notities: ["Al mijn notities", "Samenvattingen", "Technische aantekeningen", "Notities per NHA-les", "Favoriete notities"],
+  praktijk: ["Mijn werkzaamheden", "Vaardighedenoverzicht", "Mijn praktijkervaring"],
+  planning: ["Mijn weekplanning", "Mijn takenlijst", "Mijn leerdoelen", "Cursusvoortgang", "Leerstatistieken", "Mijn leerlogboek", "Herinneringen"],
+  oefenen: ["Flashcards", "Mijn toetsresultaten"],
+  bestanden: ["Alle bestanden", "PDF-documenten", "Afbeeldingen", "Mijn documenten", "Downloads"]
+};
+
+let currentPage = "dashboard";
+
+function drawNavigation() {
+  const nav = document.getElementById("navigation");
+  nav.innerHTML = menu.map(item => `
+    <button class="nav-button ${currentPage === item[0] ? "active" : ""}"
+      onclick="openPage('${item[0]}')">
+      <span class="nav-icon">${item[1]}</span>${item[2]}
+    </button>
+  `).join("");
+}
+
+function openPage(page) {
+  currentPage = page;
+  drawNavigation();
+  renderPage();
+  document.getElementById("sidebar").classList.remove("show");
+}
+
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("show");
+}
+
+function renderPage() {
+  const target = document.getElementById("page");
+
+  if (currentPage === "dashboard") {
+    target.innerHTML = `
+      <div class="welcome">
+        <h1>Welkom in jouw fietsenwerkplaats!</h1>
+        <p>Jouw persoonlijke plek om alles te leren over fietsen, fietstechniek en reparaties.</p>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="panel">
+          <h2>Mijn cursusvoortgang</h2>
+          <div class="progress-number" id="progressNumber">0%</div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          <p class="empty">Je voortgang verschijnt hier zodra je lessen afrondt.</p>
+        </div>
+
+        <div class="panel">
+          <h2>Verder leren</h2>
+          <p class="empty">Je laatst bekeken lessen verschijnen hier zodra je met lessen gaat werken.</p>
+        </div>
+
+        <div class="panel">
+          <h2>Mijn laatst bekeken lessen</h2>
+          <p class="empty">Je hebt nog geen lessen geopend.</p>
+        </div>
+
+        <div class="panel">
+          <h2>Mijn leeromgeving</h2>
+          <p class="empty">Gebruik het menu om naar je opleiding, fietstechniek, reparaties en notities te gaan.</p>
+        </div>
+      </div>
+
+      <h2>Snelle toegang</h2>
+      <div class="tiles">
+        ${menu.slice(1,5).map(item => `
+          <div class="tile" onclick="openPage('${item[0]}')">
+            <div class="tile-icon">${item[1]}</div>
+            <h3>${item[2]}</h3>
+            <p>Open dit onderdeel van jouw leeromgeving.</p>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  else if (currentPage === "techniek") {
+    target.innerHTML = `
+      <div class="page-heading">
+        <div>
+          <h1>Fietstechniek</h1>
+          <p class="subtitle">Ontdek de techniek achter verschillende soorten fietsen.</p>
+        </div>
+      </div>
+      <div class="tiles">
+        ${techniek.map((item, index) => `
+          <div class="tile" onclick="openTopic(${index})">
+            <div class="tile-icon">${item[1]}</div>
+            <h3>${item[0]}</h3>
+            <p>${item[2]}</p>
+            <small>0 lessen →</small>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  else if (currentPage === "opleiding") {
+    target.innerHTML = `
+      <h1>Mijn opleiding</h1>
+      <p class="subtitle">Het overzicht van jouw fietsenmakeropleiding.</p>
+      <div class="panel">
+        <h2>Cursusoverzicht</h2>
+        <p class="empty">Je kunt hier straks jouw eigen NHA-hoofdstukken en lessen toevoegen.</p>
+        <div id="chapters"></div>
+      </div>
+    `;
+  }
+
+  else {
+    const selected = menu.find(item => item[0] === currentPage);
+    const title = selected ? selected[2] : "Mijn leeromgeving";
+    const pages = subpages[currentPage] || [];
+
+    target.innerHTML = `
+      <h1>${title}</h1>
+      <p class="subtitle">Jouw persoonlijke overzicht voor ${title.toLowerCase()}.</p>
+      <div class="tiles">
+        ${pages.map((name, index) => `
+          <div class="tile" onclick="openSubpage('${name.replace(/'/g, "\\'")}')">
+            <div class="tile-icon">▤</div>
+            <h3>${name}</h3>
+            <p>Bekijk en beheer dit onderdeel.</p>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
+}
+
+function openTopic(index) {
+  const item = techniek[index];
+  document.getElementById("page").innerHTML = `
+    <div class="page-heading">
+      <div>
+        <h1>${item[0]}</h1>
+        <p class="subtitle">Fietstechniek / ${item[0]}</p>
+      </div>
+      <button class="orange-button" onclick="openPage('techniek')">← Terug</button>
+    </div>
+    <div class="panel">
+      <h2>Onderwerpen</h2>
+      <p class="empty">${item[2]}</p>
+      <p class="empty">Hier kun je straks zelf onderwerpen, lessen, afbeeldingen en technische informatie toevoegen.</p>
+    </div>
+  `;
+}
+
+function openSubpage(name) {
+  document.getElementById("page").innerHTML = `
+    <div class="page-heading">
+      <div>
+        <h1>${name}</h1>
+        <p class="subtitle">Onderdeel van jouw persoonlijke leeromgeving.</p>
+      </div>
+      <button class="orange-button" onclick="openPage('${currentPage}')">← Terug</button>
+    </div>
+    <div class="panel">
+      <h2>${name}</h2>
+      <p class="empty">Deze pagina gaan we in een volgende bouwstap verder ontwikkelen.</p>
+    </div>
+  `;
+}
+
+drawNavigation();
+renderPage();
+</script>
+</body>
+</html>
