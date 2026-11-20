@@ -5,393 +5,403 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fietsenmaker Academie</title>
-
 <style>
 :root {
-  --bg:#171a1f;
-  --sidebar:#1e2329;
-  --panel:#242a31;
-  --panel2:#2c333b;
-  --orange:#f28c28;
-  --white:#f4f5f6;
-  --muted:#9ba5af;
-  --border:#363e47;
-  --green:#75bd8b;
+  --bg:#111416;
+  --panel:#1b2023;
+  --panel2:#22292d;
+  --line:#30393e;
+  --text:#f2f4f5;
+  --muted:#9ba6ac;
+  --orange:#ff762b;
+  --orange2:#ff914f;
+  --green:#42bd83;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,"Segoe UI",sans-serif}
-button{font:inherit}
-.app{display:flex;min-height:100vh}
-.sidebar{width:260px;background:var(--sidebar);border-right:1px solid var(--border);padding:22px 14px;flex-shrink:0;transition:.25s}
-.logo{padding:8px 12px 24px;border-bottom:1px solid var(--border);margin-bottom:18px}
-.logo strong{font-size:20px;letter-spacing:1px}
-.logo strong span{color:var(--orange)}
-.logo small{display:block;color:var(--muted);font-size:9px;letter-spacing:1.8px;margin-top:7px}
-.nav-label{color:#77818b;font-size:10px;font-weight:bold;letter-spacing:1.5px;padding:12px}
-.nav-button{width:100%;border:0;background:transparent;color:#c6cdd4;text-align:left;padding:12px;border-radius:7px;cursor:pointer;font-size:13px;margin:2px 0;display:flex;align-items:center;gap:12px}
-.nav-button:hover{background:var(--panel2)}
-.nav-button.active{background:#3b3025;color:var(--orange);font-weight:bold}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:255px;background:#171c1f;border-right:1px solid var(--line);padding:24px 15px;flex-shrink:0}
+.brand{font-size:19px;font-weight:900;letter-spacing:1px;padding:8px 10px 28px}
+.brand span{color:var(--orange)}
+.nav-label{font-size:10px;color:#78848a;font-weight:bold;letter-spacing:1.5px;padding:15px 11px 8px}
+.nav button{display:flex;width:100%;gap:12px;align-items:center;text-align:left;background:transparent;color:#b7c0c4;border:0;padding:11px;border-radius:7px;margin:2px 0;font-size:13px}
+.nav button:hover,.nav button.active{background:#292f32;color:white}
+.nav button.active{border-left:3px solid var(--orange);padding-left:8px}
 .nav-icon{width:20px;text-align:center;font-size:16px}
-.main{flex:1;min-width:0}
-.topbar{height:68px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:#1c2025}
-.topbar-left{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:12px}
-.topbar-right{color:var(--orange);font-size:11px;font-weight:bold;letter-spacing:1px}
-.content{padding:32px;max-width:1450px;margin:auto}
-h1{font-size:27px;margin:0 0 8px}
-h2{font-size:17px;margin:0 0 15px}
-h3{font-size:14px;margin:0 0 9px}
-.subtitle{font-size:13px;color:var(--muted);margin:0 0 27px;line-height:1.6}
-.panel{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:21px}
-.muted{color:var(--muted);font-size:12px;line-height:1.7}
-.hero{background:linear-gradient(115deg,#303740,#22282f);border:1px solid #414a54;border-left:4px solid var(--orange);border-radius:12px;padding:30px;margin-bottom:20px;position:relative;overflow:hidden}
-.hero:after{content:"⚙";position:absolute;right:35px;top:0;font-size:120px;color:#f28c2817}
-.eyebrow{font-size:10px;color:var(--orange);font-weight:bold;letter-spacing:2px}
-.hero h1{margin:13px 0;font-size:29px}
-.hero p{color:#b7c0c9;font-size:13px;line-height:1.7;max-width:540px}
-.grid{display:grid;gap:16px}
-.grid-two{grid-template-columns:1.4fr 1fr}
-.grid-three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.grid-four{grid-template-columns:repeat(4,minmax(0,1fr))}
-.section{margin:27px 0}
-.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
-.section-heading h2{margin:0}
-.progress-number{font-size:35px;font-weight:bold;color:var(--orange)}
-.progress-track{height:8px;background:#414952;border-radius:20px;overflow:hidden;margin:15px 0 9px}
-.progress-fill{height:100%;background:var(--orange);border-radius:20px;transition:width .25s}
-.stat-line{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}
-.tile{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:19px;cursor:pointer;transition:.2s;min-height:145px}
-.tile:hover{border-color:var(--orange);transform:translateY(-2px)}
-.tile-icon{font-size:26px;margin-bottom:14px}
-.tile h3{margin-bottom:7px}
-.tile p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 12px}
-.tile small{color:var(--orange);font-size:11px}
-.continue-card{display:flex;align-items:center;gap:15px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:17px}
-.continue-icon{width:46px;height:46px;border-radius:9px;background:#453322;color:var(--orange);display:grid;place-items:center;font-size:23px;flex-shrink:0}
-.continue-info{flex:1}
-.continue-info strong{font-size:13px;display:block;margin-bottom:5px}
-.continue-info span{font-size:11px;color:var(--muted)}
-.orange-button{background:var(--orange);color:#171a1f;border:0;border-radius:6px;padding:10px 14px;font-weight:bold;font-size:12px;cursor:pointer}
-.orange-button:hover{background:#ffa344}
-.secondary-button{background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:9px 12px;font-size:12px;cursor:pointer}
-.secondary-button:hover{border-color:var(--orange);color:var(--orange)}
-.chapter{background:var(--panel);border:1px solid var(--border);border-radius:9px;margin-bottom:10px;overflow:hidden}
-.chapter-head{width:100%;background:transparent;color:var(--white);border:0;padding:17px;display:flex;justify-content:space-between;align-items:center;text-align:left;cursor:pointer;gap:12px}
-.chapter-head:hover{background:var(--panel2)}
-.chapter-title{font-size:13px;font-weight:bold}
-.chapter-meta{font-size:11px;color:var(--muted);margin-top:5px}
-.chapter-content{display:none;padding:8px 17px 13px;border-top:1px solid var(--border)}
-.chapter.open .chapter-content{display:block}
-.lesson{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:12px}
+.main{flex:1;min-width:0;padding:30px 38px 60px;max-width:1600px;margin:0 auto;width:100%}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}
+.breadcrumb{color:var(--muted);font-size:12px}
+.status{font-size:11px;color:var(--green);background:#183328;padding:8px 12px;border-radius:5px}
+h1{font-size:29px;margin:0 0 9px;letter-spacing:-.5px}
+h2{font-size:18px;margin:0 0 16px}
+h3{font-size:15px;margin:0 0 8px}
+p{color:var(--muted);line-height:1.6;font-size:13px}
+.page-intro{margin-bottom:27px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:22px 0}
+.stat{background:var(--panel);border:1px solid var(--line);padding:18px;border-radius:9px}
+.stat strong{font-size:25px;display:block;margin-bottom:5px}
+.stat span{font-size:11px;color:var(--muted)}
+.progress{height:7px;background:#343d42;border-radius:10px;overflow:hidden;margin:12px 0}
+.progress div{height:100%;background:var(--orange);border-radius:10px}
+.btn{border:1px solid var(--line);background:#293135;color:white;padding:10px 14px;border-radius:6px;font-size:12px;font-weight:bold}
+.btn:hover{background:#354046}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:#171717}
+.btn.primary:hover{background:var(--orange2)}
+.btn.danger{color:#ff8c80;border-color:#6a3834}
+.btn.small{padding:7px 10px;font-size:11px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.chapter{background:var(--panel);border:1px solid var(--line);border-radius:9px;margin-bottom:13px;overflow:hidden}
+.chapter-head{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.chapter-title{display:flex;align-items:center;gap:13px;min-width:0}
+.chapter-number{background:#30383c;color:var(--orange);font-weight:bold;padding:10px 12px;border-radius:6px}
+.chapter-info{min-width:0}
+.chapter-info strong{font-size:14px}
+.chapter-info small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+.chapter-content{border-top:1px solid var(--line);padding:10px 20px 17px}
+.lesson{display:flex;align-items:center;gap:12px;padding:12px 5px;border-bottom:1px solid #30383c}
 .lesson:last-child{border:0}
-.lesson-name{display:flex;align-items:center;gap:10px}
-.lesson-status{color:var(--muted);font-size:11px}
-.lesson-status.done{color:var(--green)}
-.lesson-button{border:1px solid var(--border);background:transparent;color:var(--muted);border-radius:5px;padding:7px 9px;font-size:10px;cursor:pointer}
-.lesson-button.done{border-color:var(--green);color:var(--green)}
-.empty{padding:25px;text-align:center;color:var(--muted);font-size:12px;line-height:1.8}
-.page-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:24px}
-.page-heading .subtitle{margin-bottom:0}
-.back-button{white-space:nowrap}
-.mobile-menu{display:none;background:transparent;border:1px solid var(--border);color:white;border-radius:6px;padding:8px 10px;cursor:pointer}
-.page-list{display:grid;gap:10px}
-.list-item{padding:16px;background:var(--panel);border:1px solid var(--border);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;cursor:pointer}
-.list-item:hover{border-color:var(--orange)}
-.tag{font-size:10px;color:var(--orange);background:#443222;padding:5px 8px;border-radius:20px}
-@media(max-width:1000px){.grid-four{grid-template-columns:repeat(2,1fr)}}
+.lesson-check{width:19px;height:19px;accent-color:var(--green);flex-shrink:0}
+.lesson-name{flex:1;min-width:0}
+.lesson-name strong{font-size:13px;display:block}
+.lesson-name small{font-size:11px;color:var(--muted)}
+.done{color:var(--green)!important}
+.lesson-buttons{display:flex;gap:6px}
+.empty{padding:28px;text-align:center;border:1px dashed #465158;border-radius:8px;color:var(--muted);font-size:13px}
+.field{margin:15px 0}
+.field label{display:block;font-size:12px;font-weight:bold;margin-bottom:8px;color:#cbd2d5}
+.field input,.field textarea{width:100%;background:#111719;border:1px solid #3a454b;color:white;padding:12px;border-radius:6px;outline:none}
+.field input:focus,.field textarea:focus{border-color:var(--orange)}
+.field textarea{min-height:260px;resize:vertical;line-height:1.6}
+.editor-toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.editor-toolbar button{background:#293135;border:1px solid var(--line);color:white;border-radius:4px;padding:7px 10px;font-size:11px}
+.editor-toolbar button:hover{border-color:var(--orange)}
+.file-list{display:grid;gap:8px;margin-top:12px}
+.file-item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#111719;border:1px solid var(--line);padding:10px;border-radius:6px;font-size:12px}
+.file-item a{color:var(--orange)}
+.file-input{display:none}
+.lesson-view{line-height:1.8;color:#d4dadd;font-size:14px}
+.lesson-view img{max-width:100%;border-radius:8px;margin:12px 0}
+.lesson-view h1,.lesson-view h2,.lesson-view h3{margin-top:20px}
+.lesson-view a{color:var(--orange)}
+.editor-layout{max-width:950px}
+.back{color:var(--orange);font-size:12px;cursor:pointer;margin-bottom:20px;display:inline-block}
+.muted{color:var(--muted)}
+.module-card{background:var(--panel);border:1px solid var(--line);padding:20px;border-radius:9px;min-height:135px}
+.module-card .symbol{font-size:25px;margin-bottom:13px}
+.module-card strong{font-size:14px}
+.module-card p{font-size:12px;margin-bottom:0}
+.toast{position:fixed;bottom:22px;right:22px;background:#263b32;border:1px solid #35664e;color:#a7f0c9;padding:13px 18px;border-radius:7px;font-size:12px;display:none;z-index:10}
 @media(max-width:800px){
-.sidebar{position:fixed;z-index:20;top:0;bottom:0;left:-275px;overflow:auto;transition:left .25s}
-.sidebar.show{left:0}
-.mobile-menu{display:block}
-.content{padding:22px 16px}
-.topbar{padding:0 16px}
-.grid-two,.grid-three{grid-template-columns:1fr}
-}
-@media(max-width:480px){
-.grid-four{grid-template-columns:1fr 1fr}
-.hero{padding:22px}
-.hero h1{font-size:23px}
-.continue-card{align-items:flex-start;flex-wrap:wrap}
-.continue-card .orange-button{margin-left:60px}
+ .sidebar{width:70px;padding:15px 8px}
+ .brand{font-size:0;padding:8px 0 20px;text-align:center}
+ .brand:after{content:"FA";font-size:17px;color:var(--orange)}
+ .nav-label{display:none}
+ .nav button{justify-content:center;font-size:0;padding:13px 4px}
+ .nav-icon{font-size:18px}
+ .main{padding:22px 15px}
+ .grid{grid-template-columns:1fr}
+ .stats{grid-template-columns:1fr}
+ .chapter-head{align-items:flex-start}
+ .chapter-head>.actions{flex-direction:column}
+ .lesson-buttons .edit-label{display:none}
 }
 </style>
 </head>
-
 <body>
-<div class="app">
-<aside class="sidebar" id="sidebar">
-  <div class="logo">
-    <strong><span>⚙</span> FIETSA CADEMIE</strong>
-    <small>MIJN PERSOONLIJKE LEEROMGEVING</small>
-  </div>
-  <div class="nav-label">HOOFDMENU</div>
-  <nav id="navigation"></nav>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand">FIETS<span>ACADEMIE</span></div>
+  <nav class="nav">
+    <div class="nav-label">HOOFDMENU</div>
+    <button class="active" data-page="dashboard"><span class="nav-icon">⌂</span>Dashboard</button>
+    <div class="nav-label">OPLEIDING</div>
+    <button data-page="opleiding"><span class="nav-icon">▤</span>Mijn opleiding</button>
+    <button data-page="techniek"><span class="nav-icon">⚙</span>Fietstechniek</button>
+    <button data-page="reparaties"><span class="nav-icon">🔧</span>Reparaties</button>
+    <button data-page="notities"><span class="nav-icon">✎</span>Mijn notities</button>
+    <button data-page="praktijk"><span class="nav-icon">▣</span>Praktijk & werkzaamheden</button>
+    <div class="nav-label">PLANNING</div>
+    <button data-page="planning"><span class="nav-icon">▦</span>Planning & voortgang</button>
+    <button data-page="oefenen"><span class="nav-icon">✓</span>Oefenen & toetsen</button>
+    <button data-page="bestanden"><span class="nav-icon">▧</span>Bestanden</button>
+  </nav>
 </aside>
-
 <main class="main">
-  <header class="topbar">
-    <div class="topbar-left">
-      <button class="mobile-menu" onclick="toggleMenu()">☰</button>
-      <span>Mijn fietsenmaker leeromgeving</span>
-    </div>
-    <div class="topbar-right">● MIJN ACADEMIE</div>
-  </header>
-  <div class="content" id="page"></div>
+  <div class="topbar">
+    <div class="breadcrumb" id="breadcrumb">FIETSACADEMIE / DASHBOARD</div>
+    <div class="status">● Lokaal opgeslagen</div>
+  </div>
+  <div id="app"></div>
 </main>
 </div>
+<div class="toast" id="toast"></div>
 
 <script>
-const menu = [
-  ["dashboard","⌂","Dashboard"],
-  ["opleiding","▤","Mijn opleiding"],
-  ["techniek","⚙","Fietstechniek"],
-  ["reparaties","🔧","Reparaties"],
-  ["notities","▧","Mijn notities"],
-  ["praktijk","🛠","Praktijk & werkzaamheden"],
-  ["planning","▦","Planning & voortgang"],
-  ["oefenen","✎","Oefenen & toetsen"],
-  ["bestanden","▣","Bestanden"]
-];
-
-const techniek = [
-  ["Fietstypen","🚲","Stadsfietsen, racefietsen, mountainbikes en meer."],
-  ["Aandrijving & versnellingen","⚙️","Ketting, tandwielen, derailleurs en versnellingen."],
-  ["Remsystemen","◉","Schijfremmen, velgremmen en remtechniek."],
-  ["Wielen & banden","◎","Wielopbouw, spaken, naven en banden."],
-  ["Elektrische fietstechniek","⚡","Motoren, accu's, sensoren en elektronica."],
-  ["Frames & constructie","▱","Framebouw, materialen en verbindingen."],
-  ["Interactieve fietsen","🚲","Ontdek onderdelen van stadsfietsen en elektrische fietsen."]
-];
-
-const subpages = {
-  opleiding:["Cursusoverzicht","Alle hoofdstukken","Alle lessen","Mijn leerdoelen","Opdrachten & huiswerk"],
-  reparaties:["Reparatiehandleidingen","Stappenplannen","Benodigd gereedschap","Reparaties per fietsonderdeel","Mijn uitgevoerde reparaties"],
-  notities:["Al mijn notities","Samenvattingen","Technische aantekeningen","Notities per NHA-les","Favoriete notities"],
-  praktijk:["Mijn werkzaamheden","Vaardighedenoverzicht","Mijn praktijkervaring"],
-  planning:["Mijn weekplanning","Mijn takenlijst","Mijn leerdoelen","Cursusvoortgang","Leerstatistieken","Mijn leerlogboek","Herinneringen"],
-  oefenen:["Flashcards","Mijn toetsresultaten"],
-  bestanden:["Alle bestanden","PDF-documenten","Afbeeldingen","Mijn documenten","Downloads"]
-};
-
+const KEY = "fietsacademie_data_v2";
+let data = JSON.parse(localStorage.getItem(KEY) || '{"chapters":[]}');
 let currentPage = "dashboard";
-let chapters = JSON.parse(localStorage.getItem("fietsChapters") || "[]");
-let completed = JSON.parse(localStorage.getItem("fietsCompleted") || "[]");
-let lastTopic = "";
-let lastViewed = JSON.parse(localStorage.getItem("fietsLastViewed") || "[]");
+let editingLesson = null;
+let editingChapter = null;
+let openChapters = {};
+let currentLesson = null;
+let lessonFiles = [];
+let db;
 
-function saveData(){
-  localStorage.setItem("fietsChapters",JSON.stringify(chapters));
-  localStorage.setItem("fietsCompleted",JSON.stringify(completed));
-  localStorage.setItem("fietsLastViewed",JSON.stringify(lastViewed));
+function save(){
+  localStorage.setItem(KEY,JSON.stringify(data));
+  updateDashboardIfVisible();
 }
-
-function totalLessons(){
-  return chapters.reduce((sum,c)=>sum+c.lessons.length,0);
+function notify(message){
+  const el=document.getElementById("toast");
+  el.textContent=message;
+  el.style.display="block";
+  setTimeout(()=>el.style.display="none",2300);
 }
-function completedLessons(){
-  return completed.length;
-}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+function allLessons(){return data.chapters.flatMap(c=>c.lessons||[])}
 function progress(){
-  return totalLessons() ? Math.round(completedLessons()/totalLessons()*100) : 0;
+  const lessons=allLessons();
+  return lessons.length?Math.round(lessons.filter(l=>l.done).length/lessons.length*100):0;
 }
-
-function drawNavigation(){
-  document.getElementById("navigation").innerHTML=menu.map(item=>`
-    <button class="nav-button ${currentPage===item[0]?"active":""}" onclick="openPage('${item[0]}')">
-      <span class="nav-icon">${item[1]}</span>${item[2]}
-    </button>
-  `).join("");
+function updateDashboardIfVisible(){
+  if(currentPage==="dashboard") renderDashboard();
+  if(currentPage==="opleiding") renderOpleiding();
 }
-
-function openPage(page){
+function go(page){
   currentPage=page;
-  drawNavigation();
-  renderPage();
-  document.getElementById("sidebar").classList.remove("show");
-  window.scrollTo(0,0);
+  currentLesson=null;
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+  document.getElementById("breadcrumb").textContent="FIETSACADEMIE / "+page.toUpperCase();
+  render();
 }
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
 
-function toggleMenu(){
-  document.getElementById("sidebar").classList.toggle("show");
+function render(){
+  if(currentPage==="dashboard")renderDashboard();
+  else if(currentPage==="opleiding")renderOpleiding();
+  else if(currentPage==="les-editor")renderLessonEditor();
+  else if(currentPage==="les-bekijken")renderLessonView();
+  else if(currentPage==="hoofdstuk-editor")renderChapterEditor();
+  else renderPlaceholder();
 }
-
-function rememberLesson(name){
-  lastViewed=[name,...lastViewed.filter(x=>x!==name)].slice(0,5);
-  saveData();
-}
-
 function renderDashboard(){
-  const p=progress();
-  return `
-    <div class="hero">
-      <div class="eyebrow">MIJN DIGITALE LEEROMGEVING</div>
-      <h1>Welkom in jouw fietsenmakeracademie!</h1>
-      <p>Jouw persoonlijke plek om alles te leren over fietstechniek, onderdelen, onderhoud en reparaties. Bouw stap voor stap jouw kennis en vaardigheden op.</p>
+ const lessons=allLessons(),done=lessons.filter(l=>l.done).length,p=progress();
+ document.getElementById("app").innerHTML=`
+ <div class="page-intro"><h1>Welkom in jouw fietsenmakeracademie!</h1>
+ <p>Jouw persoonlijke leeromgeving voor fietstechniek, reparaties en praktijk.</p></div>
+ <div class="stats">
+  <div class="stat"><strong>${data.chapters.length}</strong><span>HOOFDSTUKKEN</span></div>
+  <div class="stat"><strong>${lessons.length}</strong><span>LESSEN</span></div>
+  <div class="stat"><strong>${p}%</strong><span>OPLEIDINGSVOORTGANG</span></div>
+ </div>
+ <div class="panel">
+  <h2>Mijn opleiding</h2>
+  <p>Je totale cursusvoortgang</p>
+  <div class="progress"><div style="width:${p}%"></div></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+   <span class="muted" style="font-size:12px">${done} van ${lessons.length} lessen afgerond</span>
+   <button class="btn primary" onclick="go('opleiding')">Ga naar mijn opleiding →</button>
+  </div>
+ </div>
+ <div class="grid">
+  <div class="module-card"><div class="symbol">⚙</div><strong>Fietstechniek</strong><p>Leer meer over onderdelen, systemen en de werking van fietsen.</p></div>
+  <div class="module-card"><div class="symbol">🔧</div><strong>Reparaties</strong><p>Verzamel je eigen reparatiehandleidingen en stappenplannen.</p></div>
+  <div class="module-card"><div class="symbol">✎</div><strong>Mijn notities</strong><p>Bewaar je eigen samenvattingen en technische aantekeningen.</p></div>
+  <div class="module-card"><div class="symbol">▦</div><strong>Planning & voortgang</strong><p>Houd overzicht over je leerdoelen en cursusvoortgang.</p></div>
+ </div>
+ ${lessons.length?`<div class="panel" style="margin-top:18px"><h2>Verder leren</h2>${lessons.filter(l=>!l.done).slice(0,3).map(l=>`<div class="lesson"><div class="lesson-name"><strong>${escapeHtml(l.title)}</strong><small>${escapeHtml(chapterName(l.chapterId))}</small></div><button class="btn small" onclick="openLesson('${l.id}')">Open les</button></div>`).join("")}</div>`:""}
+ `;
+}
+function chapterName(id){return data.chapters.find(c=>c.id===id)?.title||"Hoofdstuk"}
+function renderOpleiding(){
+ const lessons=allLessons();
+ document.getElementById("app").innerHTML=`
+ <div class="page-intro"><h1>Mijn opleiding</h1><p>Beheer hier je eigen cursus, hoofdstukken en lesmateriaal.</p></div>
+ <div class="panel">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+   <div><h2>Cursusoverzicht</h2><p style="margin:0">${data.chapters.length} hoofdstukken · ${lessons.length} lessen · ${progress()}% afgerond</p></div>
+   <button class="btn primary" onclick="newChapter()">＋ Hoofdstuk toevoegen</button>
+  </div>
+  <div class="progress"><div style="width:${progress()}%"></div></div>
+ </div>
+ <div id="chapters">
+ ${data.chapters.length?data.chapters.map((c,i)=>chapterHtml(c,i)).join(""):`<div class="empty"><div style="font-size:30px;margin-bottom:12px">▤</div><strong>Je cursus is nog leeg</strong><p>Voeg je eerste hoofdstuk toe om te beginnen.</p><button class="btn primary" onclick="newChapter()">＋ Eerste hoofdstuk toevoegen</button></div>`}
+ </div>`;
+}
+function chapterHtml(c,i){
+ const ls=c.lessons||[],done=ls.filter(l=>l.done).length;
+ return `<section class="chapter">
+  <div class="chapter-head">
+   <div class="chapter-title" onclick="toggleChapter('${c.id}')" style="cursor:pointer">
+    <div class="chapter-number">${String(i+1).padStart(2,"0")}</div>
+    <div class="chapter-info"><strong>${escapeHtml(c.title)}</strong><small>${ls.length} lessen · ${done} afgerond</small></div>
+   </div>
+   <div class="actions">
+    <button class="btn small" onclick="event.stopPropagation();newLesson('${c.id}')">＋ Les</button>
+    <button class="btn small" onclick="event.stopPropagation();editChapter('${c.id}')">Bewerken</button>
+    <button class="btn small danger" onclick="event.stopPropagation();deleteChapter('${c.id}')">Verwijderen</button>
+    <button class="btn small" onclick="toggleChapter('${c.id}')">${openChapters[c.id]?"Inklappen":"Openen"}⌄</button>
+   </div>
+  </div>
+  ${openChapters[c.id]?`<div class="chapter-content">
+   ${ls.length?ls.map(l=>`<div class="lesson">
+    <input class="lesson-check" type="checkbox" ${l.done?"checked":""} onchange="toggleDone('${l.id}')">
+    <div class="lesson-name"><strong class="${l.done?"done":""}">${escapeHtml(l.title)}</strong><small>${l.content?"Lesmateriaal beschikbaar":"Nog geen lesmateriaal"}</small></div>
+    <div class="lesson-buttons">
+     <button class="btn small" onclick="openLesson('${l.id}')">Open</button>
+     <button class="btn small" onclick="editLesson('${l.id}')">✎ <span class="edit-label">Bewerken</span></button>
+     <button class="btn small danger" onclick="deleteLesson('${l.id}')">×</button>
     </div>
-
-    <div class="grid grid-two">
-      <div class="panel">
-        <h2>Mijn opleidingsvoortgang</h2>
-        <div class="progress-number">${p}%</div>
-        <div class="progress-track"><div class="progress-fill" style="width:${p}%"></div></div>
-        <div class="stat-line"><span>${completedLessons()} afgeronde lessen</span><span>${totalLessons()} lessen totaal</span></div>
-      </div>
-      <div class="panel">
-        <h2>Verder leren</h2>
-        <div class="continue-card">
-          <div class="continue-icon">📚</div>
-          <div class="continue-info">
-            <strong>Mijn fietsenmakeropleiding</strong>
-            <span>Ga verder met jouw cursus.</span>
-          </div>
-          <button class="orange-button" onclick="openPage('opleiding')">Openen</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-heading"><h2>Ontdek jouw leeromgeving</h2></div>
-      <div class="grid grid-three">
-        ${[
-          ["opleiding","📚","Mijn opleiding","Hoofdstukken, lessen en leerdoelen."],
-          ["techniek","⚙️","Fietstechniek","Ontdek de techniek achter fietsen."],
-          ["reparaties","🔧","Reparaties","Handleidingen en stappenplannen."],
-          ["notities","📝","Mijn notities","Bewaar jouw eigen aantekeningen."],
-          ["oefenen","✏️","Oefenen & toetsen","Flashcards en toetsresultaten."],
-          ["planning","📅","Planning & voortgang","Organiseer jouw leerproces."]
-        ].map(x=>`
-          <div class="tile" onclick="openPage('${x[0]}')">
-            <div class="tile-icon">${x[1]}</div><h3>${x[2]}</h3><p>${x[3]}</p>
-          </div>`).join("")}
-      </div>
-    </div>
-
-    <div class="section grid grid-two">
-      <div class="panel">
-        <h2>Laatst bekeken lessen</h2>
-        ${lastViewed.length ? lastViewed.map(x=>`<div class="list-item" style="margin-bottom:8px" onclick="openLesson('${escapeAttr(x)}')">${escapeHTML(x)} <span>→</span></div>`).join("") : `<div class="empty">Je hebt nog geen lessen geopend.<br>Je recent bekeken lessen verschijnen hier.</div>`}
-      </div>
-      <div class="panel">
-        <h2>Mijn recente activiteit</h2>
-        <p class="muted">Hier komt jouw leeractiviteit te staan. Zodra je lessen toevoegt en afrondt, groeit dit overzicht mee.</p>
-      </div>
-    </div>
-  `;
+   </div>`).join(""):`<div class="empty">Dit hoofdstuk bevat nog geen lessen.</div>`}
+   <button class="btn small" style="margin-top:12px" onclick="newLesson('${c.id}')">＋ Les toevoegen</button>
+  </div>`:""}
+ </section>`;
 }
-
-function renderPage(){
-  const target=document.getElementById("page");
-  if(currentPage==="dashboard"){
-    target.innerHTML=renderDashboard();
-    return;
-  }
-  if(currentPage==="techniek"){
-    target.innerHTML=`
-      <div class="page-heading"><div><h1>Fietstechniek</h1><p class="subtitle">Ontdek de techniek achter verschillende soorten fietsen.</p></div></div>
-      <div class="grid grid-three">
-        ${techniek.map((x,i)=>`
-          <div class="tile" onclick="openTopic(${i})">
-            <div class="tile-icon">${x[1]}</div><h3>${x[0]}</h3><p>${x[2]}</p><small>Onderwerpen bekijken →</small>
-          </div>`).join("")}
-      </div>`;
-    return;
-  }
-  if(currentPage==="opleiding"){
-    target.innerHTML=`
-      <div class="page-heading"><div><h1>Mijn opleiding</h1><p class="subtitle">Het overzicht van jouw fietsenmakeropleiding.</p></div>
-      <button class="orange-button" onclick="addChapter()">+ Hoofdstuk toevoegen</button></div>
-      <div class="panel">
-        <div class="section-heading"><h2>Cursusoverzicht</h2><span class="tag">${progress()}% afgerond</span></div>
-        <div class="progress-track"><div class="progress-fill" style="width:${progress()}%"></div></div>
-        <div style="margin-top:20px">${renderChapters()}</div>
-      </div>`;
-    return;
-  }
-  const item=menu.find(x=>x[0]===currentPage);
-  const title=item?item[2]:"Mijn leeromgeving";
-  const pages=subpages[currentPage]||[];
-  target.innerHTML=`
-    <h1>${title}</h1>
-    <p class="subtitle">Jouw persoonlijke overzicht voor ${title.toLowerCase()}.</p>
-    <div class="grid grid-three">
-      ${pages.map((name,i)=>`
-        <div class="tile" onclick="openSubpage('${escapeAttr(name)}')">
-          <div class="tile-icon">${["▤","📄","📝","📌","📚","⚙️","📊"][i%7]}</div>
-          <h3>${name}</h3><p>Bekijk en beheer dit onderdeel.</p>
-        </div>`).join("")}
-    </div>`;
+function toggleChapter(id){openChapters[id]=!openChapters[id];renderOpleiding()}
+function newChapter(){editingChapter=null;currentPage="hoofdstuk-editor";renderChapterEditor()}
+function editChapter(id){editingChapter=id;currentPage="hoofdstuk-editor";renderChapterEditor()}
+function renderChapterEditor(){
+ const c=data.chapters.find(x=>x.id===editingChapter);
+ document.getElementById("app").innerHTML=`
+ <div class="editor-layout"><span class="back" onclick="go('opleiding')">← Terug naar mijn opleiding</span>
+ <div class="page-intro"><h1>${c?"Hoofdstuk bewerken":"Nieuw hoofdstuk"}</h1><p>Geef je hoofdstuk een duidelijke naam.</p></div>
+ <div class="panel">
+  <div class="field"><label>Naam van het hoofdstuk</label><input id="chapterTitle" placeholder="Bijvoorbeeld: De fietsaandrijving" value="${c?escapeAttr(c.title):""}"></div>
+  <div class="field"><label>Beschrijving (optioneel)</label><textarea id="chapterDesc" style="min-height:100px" placeholder="Waar gaat dit hoofdstuk over?">${c?escapeHtml(c.description||""):""}</textarea></div>
+  <div class="actions"><button class="btn primary" onclick="saveChapter()">Hoofdstuk opslaan</button><button class="btn" onclick="go('opleiding')">Annuleren</button></div>
+ </div></div>`;
 }
-
-function renderChapters(){
-  if(!chapters.length) return `<div class="empty">Je hebt nog geen hoofdstukken toegevoegd.<br>Gebruik de knop 'Hoofdstuk toevoegen' om jouw NHA-cursus in te voeren.</div>`;
-  return chapters.map((c,i)=>`
-    <div class="chapter" id="chapter${i}">
-      <button class="chapter-head" onclick="toggleChapter(${i})">
-        <div><div class="chapter-title">Hoofdstuk ${i+1} – ${escapeHTML(c.name)}</div>
-        <div class="chapter-meta">${c.lessons.length} lessen · ${c.lessons.filter(l=>completed.includes(l.id)).length} afgerond</div></div>
-        <span>⌄</span>
-      </button>
-      <div class="chapter-content">
-        ${c.lessons.map(l=>`
-          <div class="lesson">
-            <div class="lesson-name"><span class="lesson-status ${completed.includes(l.id)?"done":""}">${completed.includes(l.id)?"✓":"○"}</span>${escapeHTML(l.name)}</div>
-            <button class="lesson-button ${completed.includes(l.id)?"done":""}" onclick="toggleLesson('${l.id}')">${completed.includes(l.id)?"✓ Afgerond":"Markeer als afgerond"}</button>
-          </div>`).join("")}
-        <button class="secondary-button" style="margin-top:12px" onclick="addLesson(${i})">+ Les toevoegen</button>
-      </div>
-    </div>`).join("");
+function saveChapter(){
+ const title=document.getElementById("chapterTitle").value.trim();
+ if(!title){notify("Vul eerst een hoofdstuktitel in.");return}
+ const description=document.getElementById("chapterDesc").value;
+ if(editingChapter){const c=data.chapters.find(x=>x.id===editingChapter);c.title=title;c.description=description}
+ else data.chapters.push({id:uid(),title,description,lessons:[]});
+ save();notify("Hoofdstuk opgeslagen!");go("opleiding");
 }
-
-function toggleChapter(i){
-  document.getElementById("chapter"+i).classList.toggle("open");
+function deleteChapter(id){
+ const c=data.chapters.find(x=>x.id===id);
+ if(!confirm(`Weet je zeker dat je "${c.title}" en alle lessen daarin wilt verwijderen?`))return;
+ data.chapters=data.chapters.filter(x=>x.id!==id);save();renderOpleiding();notify("Hoofdstuk verwijderd.");
 }
-function addChapter(){
-  const name=prompt("Wat is de titel van het hoofdstuk?");
-  if(!name||!name.trim())return;
-  chapters.push({name:name.trim(),lessons:[]});
-  saveData();renderPage();
+function newLesson(chapterId){editingLesson=null;currentLesson={chapterId};lessonFiles=[];currentPage="les-editor";renderLessonEditor()}
+function editLesson(id){
+ const found=findLesson(id);if(!found)return;
+ editingLesson=id;currentLesson={chapterId:found.chapter.id};lessonFiles=[...(found.lesson.files||[])];currentPage="les-editor";renderLessonEditor();
 }
-function addLesson(i){
-  const name=prompt("Wat is de naam van de les?");
-  if(!name||!name.trim())return;
-  chapters[i].lessons.push({id:"les-"+Date.now()+"-"+Math.random().toString(36).slice(2),name:name.trim()});
-  saveData();renderPage();
-  document.getElementById("chapter"+i).classList.add("open");
+function findLesson(id){
+ for(const chapter of data.chapters){const lesson=(chapter.lessons||[]).find(l=>l.id===id);if(lesson)return {chapter,lesson}}
+ return null;
 }
-function toggleLesson(id){
-  completed=completed.includes(id)?completed.filter(x=>x!==id):[...completed,id];
-  saveData();renderPage();
-  document.getElementById("chapter"+chapters.findIndex(c=>c.lessons.some(l=>l.id===id))).classList.add("open");
+function renderLessonEditor(){
+ const found=editingLesson?findLesson(editingLesson):null;
+ const l=found?.lesson;
+ document.getElementById("app").innerHTML=`
+ <div class="editor-layout"><span class="back" onclick="go('opleiding')">← Terug naar mijn opleiding</span>
+ <div class="page-intro"><h1>${l?"Les bewerken":"Nieuwe les maken"}</h1><p>Voeg je eigen lesmateriaal toe aan je opleiding.</p></div>
+ <div class="panel">
+  <div class="field"><label>Hoofdstuk</label><input value="${escapeAttr(chapterName(currentLesson.chapterId))}" disabled></div>
+  <div class="field"><label>Lesnaam</label><input id="lessonTitle" placeholder="Bijvoorbeeld: Werking van een derailleur" value="${l?escapeAttr(l.title):""}"></div>
+  <div class="field"><label>Korte omschrijving (optioneel)</label><input id="lessonSubtitle" placeholder="Een korte introductie van deze les" value="${l?escapeAttr(l.subtitle||""):""}"></div>
+  <div class="field"><label>Lesmateriaal</label>
+   <div class="editor-toolbar">
+    <button onclick="formatText('bold')"><b>Vet</b></button>
+    <button onclick="formatText('italic')"><i>Schuin</i></button>
+    <button onclick="insertHeading()">Kop toevoegen</button>
+    <button onclick="insertList()">Opsomming</button>
+   </div>
+   <textarea id="lessonContent" placeholder="Schrijf hier je lesmateriaal...">${l?escapeHtml(l.content||""):""}</textarea>
+   <p>Tip: je kunt hier tekst schrijven, kopjes maken en opsommingen toevoegen.</p>
+  </div>
+  <div class="field"><label>Afbeeldingen en PDF-bestanden</label>
+   <input class="file-input" id="fileUpload" type="file" accept="image/*,.pdf" multiple onchange="addFiles(event)">
+   <button class="btn" onclick="document.getElementById('fileUpload').click()">＋ Bestanden toevoegen</button>
+   <div class="file-list" id="fileList">${renderFileList()}</div>
+   <p>Bestanden worden lokaal in deze browser bewaard. Grote bestanden kunnen de beschikbare opslagruimte overschrijden.</p>
+  </div>
+  <div class="actions"><button class="btn primary" onclick="saveLesson()">Les opslaan</button><button class="btn" onclick="go('opleiding')">Annuleren</button></div>
+ </div></div>`;
 }
-function openTopic(i){
-  const x=techniek[i];lastTopic=x[0];
-  rememberLesson(x[0]);
-  document.getElementById("page").innerHTML=`
-    <div class="page-heading"><div><h1>${x[0]}</h1><p class="subtitle">Fietstechniek / ${x[0]}</p></div>
-    <button class="secondary-button back-button" onclick="openPage('techniek')">← Terug</button></div>
-    <div class="panel">
-      <h2>Onderwerpen</h2>
-      <p class="muted">${x[2]}</p>
-      <div class="empty">Hier kun je straks zelf subonderwerpen en lessen toevoegen, met jouw eigen uitleg, afbeeldingen en technische tekeningen.</div>
-    </div>`;
+function renderFileList(){
+ return lessonFiles.map((f,i)=>`<div class="file-item"><span>${f.type.startsWith("image/")?"🖼":"📄"} ${escapeHtml(f.name)}</span><button class="btn small danger" onclick="removeFile(${i})">Verwijderen</button></div>`).join("");
 }
-function openSubpage(name){
-  rememberLesson(name);
-  document.getElementById("page").innerHTML=`
-    <div class="page-heading"><div><h1>${escapeHTML(name)}</h1><p class="subtitle">Onderdeel van jouw persoonlijke leeromgeving.</p></div>
-    <button class="secondary-button back-button" onclick="openPage('${currentPage}')">← Terug</button></div>
-    <div class="panel"><h2>${escapeHTML(name)}</h2>
-    <div class="empty">Deze pagina gaan we verder ontwikkelen. Hier kun je straks jouw eigen informatie en bestanden beheren.</div></div>`;
+function addFiles(event){
+ const files=Array.from(event.target.files);
+ files.forEach(file=>{
+  if(file.size>3*1024*1024){notify(file.name+" is groter dan 3 MB en is overgeslagen.");return}
+  const reader=new FileReader();
+  reader.onload=()=>{lessonFiles.push({name:file.name,type:file.type,data:reader.result});document.getElementById("fileList").innerHTML=renderFileList()};
+  reader.readAsDataURL(file);
+ });
+ event.target.value="";
 }
-function openLesson(name){
-  openPage("opleiding");
+function removeFile(i){lessonFiles.splice(i,1);document.getElementById("fileList").innerHTML=renderFileList()}
+function formatText(type){
+ const el=document.getElementById("lessonContent");
+ const start=el.selectionStart,end=el.selectionEnd;
+ const selected=el.value.slice(start,end)||"tekst";
+ const wrapped=type==="bold"?"**"+selected+"**":"*"+selected+"*";
+ el.setRangeText(wrapped,start,end,"select");el.focus();
 }
-function escapeHTML(s){
-  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function insertHeading(){
+ const el=document.getElementById("lessonContent");const start=el.selectionStart;
+ el.setRangeText("\n\n## Nieuwe kop\n",start,start,"end");el.focus();
 }
-function escapeAttr(s){return String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'");}
-
-drawNavigation();
-renderPage();
+function insertList(){
+ const el=document.getElementById("lessonContent");const start=el.selectionStart;
+ el.setRangeText("\n- Eerste punt\n- Tweede punt\n- Derde punt\n",start,start,"end");el.focus();
+}
+function saveLesson(){
+ const title=document.getElementById("lessonTitle").value.trim();
+ if(!title){notify("Vul eerst een lestitel in.");return}
+ const subtitle=document.getElementById("lessonSubtitle").value;
+ const content=document.getElementById("lessonContent").value;
+ if(editingLesson){
+  const f=findLesson(editingLesson);Object.assign(f.lesson,{title,subtitle,content,files:lessonFiles});
+ }else{
+  const chapter=data.chapters.find(c=>c.id===currentLesson.chapterId);
+  chapter.lessons.push({id:uid(),title,subtitle,content,files:lessonFiles,done:false});
+  openChapters[chapter.id]=true;
+ }
+ save();notify("Les opgeslagen!");go("opleiding");
+}
+function deleteLesson(id){
+ const f=findLesson(id);if(!f)return;
+ if(!confirm(`Weet je zeker dat je "${f.lesson.title}" wilt verwijderen?`))return;
+ f.chapter.lessons=f.chapter.lessons.filter(l=>l.id!==id);save();renderOpleiding();notify("Les verwijderd.");
+}
+function toggleDone(id){
+ const f=findLesson(id);if(!f)return;
+ f.lesson.done=!f.lesson.done;save();renderOpleiding();
+}
+function openLesson(id){currentLesson={id};currentPage="les-bekijken";renderLessonView()}
+function renderLessonView(){
+ const f=findLesson(currentLesson.id);if(!f){go("opleiding");return}
+ const l=f.lesson;
+ document.getElementById("app").innerHTML=`
+ <span class="back" onclick="go('opleiding')">← Terug naar mijn opleiding</span>
+ <div class="page-intro"><p>${escapeHtml(f.chapter.title)}</p><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle||"")}</p></div>
+ <div class="panel">
+  <div class="lesson-view">${formatContent(l.content||"Er is nog geen lesmateriaal toegevoegd.")}
+  ${ (l.files||[]).map(file=>file.type.startsWith("image/")?`<div><img src="${file.data}" alt="${escapeAttr(file.name)}"></div>`:`<p>📄 <a href="${file.data}" download="${escapeAttr(file.name)}">${escapeHtml(file.name)} – PDF openen/downloaden</a></p>`).join("")}
+  </div>
+  <div class="actions" style="margin-top:25px"><button class="btn ${l.done?"":"primary"}" onclick="toggleDone('${l.id}');openLesson('${l.id}')">${l.done?"✓ Les afgerond – ongedaan maken":"Les als afgerond markeren"}</button><button class="btn" onclick="editLesson('${l.id}')">Les bewerken</button></div>
+ </div>`;
+}
+function formatContent(text){
+ return escapeHtml(text).replace(/^### (.*)$/gm,"<h3>$1</h3>").replace(/^## (.*)$/gm,"<h2>$1</h2>").replace(/^# (.*)$/gm,"<h1>$1</h1>").replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>").replace(/\*(.*?)\*/g,"<em>$1</em>").replace(/^- (.*)$/gm,"• $1").replace(/\n/g,"<br>");
+}
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function escapeAttr(s){return escapeHtml(s).replace(/`/g,"&#96;")}
+function renderPlaceholder(){
+ const names={techniek:"Fietstechniek",reparaties:"Reparaties",notities:"Mijn notities",praktijk:"Praktijk & werkzaamheden",planning:"Planning & voortgang",oefenen:"Oefenen & toetsen",bestanden:"Bestanden"};
+ document.getElementById("app").innerHTML=`<div class="page-intro"><h1>${names[currentPage]||currentPage}</h1><p>Dit onderdeel gaan we later samen verder opbouwen.</p></div><div class="panel"><h2>${names[currentPage]||currentPage}</h2><p>De basis van jouw academie staat klaar. We kunnen dit onderdeel stap voor stap uitbreiden.</p><button class="btn primary" onclick="go('opleiding')">Naar mijn opleiding →</button></div>`;
+}
+render();
 </script>
 </body>
 </html>
