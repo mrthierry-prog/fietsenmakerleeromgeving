@@ -14,7 +14,6 @@
   --text:#f2f4f5;
   --muted:#9ba6ac;
   --orange:#ff762b;
-  --orange2:#ff914f;
   --green:#42bd83;
 }
 *{box-sizing:border-box}
@@ -50,50 +49,45 @@ p{color:var(--muted);line-height:1.6;font-size:13px}
 .btn{border:1px solid var(--line);background:#293135;color:white;padding:10px 14px;border-radius:6px;font-size:12px;font-weight:bold}
 .btn:hover{background:#354046}
 .btn.primary{background:var(--orange);border-color:var(--orange);color:#171717}
-.btn.primary:hover{background:var(--orange2)}
+.btn.primary:hover{background:#ff914f}
 .btn.danger{color:#ff8c80;border-color:#6a3834}
 .btn.small{padding:7px 10px;font-size:11px}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
-.chapter{background:var(--panel);border:1px solid var(--line);border-radius:9px;margin-bottom:13px;overflow:hidden}
-.chapter-head{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.chapter-title{display:flex;align-items:center;gap:13px;min-width:0}
-.chapter-number{background:#30383c;color:var(--orange);font-weight:bold;padding:10px 12px;border-radius:6px}
-.chapter-info{min-width:0}
-.chapter-info strong{font-size:14px}
-.chapter-info small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
-.chapter-content{border-top:1px solid var(--line);padding:10px 20px 17px}
-.lesson{display:flex;align-items:center;gap:12px;padding:12px 5px;border-bottom:1px solid #30383c}
-.lesson:last-child{border:0}
-.lesson-check{width:19px;height:19px;accent-color:var(--green);flex-shrink:0}
-.lesson-name{flex:1;min-width:0}
-.lesson-name strong{font-size:13px;display:block}
-.lesson-name small{font-size:11px;color:var(--muted)}
-.done{color:var(--green)!important}
-.lesson-buttons{display:flex;gap:6px}
-.empty{padding:28px;text-align:center;border:1px dashed #465158;border-radius:8px;color:var(--muted);font-size:13px}
+.lesson-card{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin-bottom:11px;display:flex;align-items:center;gap:14px;transition:.15s}
+.lesson-card:hover{border-color:#59666d;transform:translateY(-1px)}
+.lesson-number{background:#30383c;color:var(--orange);font-weight:bold;padding:12px;border-radius:6px;min-width:43px;text-align:center}
+.lesson-info{flex:1;min-width:0;cursor:pointer}
+.lesson-info strong{font-size:14px;display:block;margin-bottom:5px}
+.lesson-info small{font-size:11px;color:var(--muted)}
+.lesson-info .completed{color:var(--green)}
+.lesson-check{width:20px;height:20px;accent-color:var(--green);cursor:pointer}
+.lesson-open{color:var(--orange);font-size:12px;font-weight:bold}
+.empty{padding:35px;text-align:center;border:1px dashed #465158;border-radius:8px;color:var(--muted);font-size:13px}
+.empty .symbol{font-size:34px;margin-bottom:12px}
 .field{margin:15px 0}
 .field label{display:block;font-size:12px;font-weight:bold;margin-bottom:8px;color:#cbd2d5}
 .field input,.field textarea{width:100%;background:#111719;border:1px solid #3a454b;color:white;padding:12px;border-radius:6px;outline:none}
 .field input:focus,.field textarea:focus{border-color:var(--orange)}
-.field textarea{min-height:260px;resize:vertical;line-height:1.6}
+.field textarea{min-height:320px;resize:vertical;line-height:1.7}
+.field input:disabled{opacity:.6}
 .editor-toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
 .editor-toolbar button{background:#293135;border:1px solid var(--line);color:white;border-radius:4px;padding:7px 10px;font-size:11px}
 .editor-toolbar button:hover{border-color:var(--orange)}
-.file-list{display:grid;gap:8px;margin-top:12px}
-.file-item{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#111719;border:1px solid var(--line);padding:10px;border-radius:6px;font-size:12px}
-.file-item a{color:var(--orange)}
+.file-list{display:grid;gap:10px;margin-top:12px}
+.file-item{background:#111719;border:1px solid var(--line);padding:10px;border-radius:6px;font-size:12px}
+.file-item img{max-width:100%;max-height:260px;display:block;margin:8px 0;border-radius:5px}
+.file-item-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .file-input{display:none}
-.lesson-view{line-height:1.8;color:#d4dadd;font-size:14px}
-.lesson-view img{max-width:100%;border-radius:8px;margin:12px 0}
-.lesson-view h1,.lesson-view h2,.lesson-view h3{margin-top:20px}
-.lesson-view a{color:var(--orange)}
-.editor-layout{max-width:950px}
-.back{color:var(--orange);font-size:12px;cursor:pointer;margin-bottom:20px;display:inline-block}
-.muted{color:var(--muted)}
+.lesson-content{line-height:1.8;color:#d4dadd;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.lesson-content img{max-width:100%;border-radius:8px;margin:12px 0}
+.lesson-content h2{margin-top:25px}
+.lesson-content a{color:var(--orange)}
 .module-card{background:var(--panel);border:1px solid var(--line);padding:20px;border-radius:9px;min-height:135px}
 .module-card .symbol{font-size:25px;margin-bottom:13px}
 .module-card strong{font-size:14px}
 .module-card p{font-size:12px;margin-bottom:0}
+.back{color:var(--orange);font-size:12px;cursor:pointer;margin-bottom:20px;display:inline-block}
+.muted{color:var(--muted)}
 .toast{position:fixed;bottom:22px;right:22px;background:#263b32;border:1px solid #35664e;color:#a7f0c9;padding:13px 18px;border-radius:7px;font-size:12px;display:none;z-index:10}
 @media(max-width:800px){
  .sidebar{width:70px;padding:15px 8px}
@@ -105,9 +99,8 @@ p{color:var(--muted);line-height:1.6;font-size:13px}
  .main{padding:22px 15px}
  .grid{grid-template-columns:1fr}
  .stats{grid-template-columns:1fr}
- .chapter-head{align-items:flex-start}
- .chapter-head>.actions{flex-direction:column}
- .lesson-buttons .edit-label{display:none}
+ .lesson-card{gap:9px;padding:13px}
+ .lesson-open{display:none}
 }
 </style>
 </head>
@@ -130,6 +123,7 @@ p{color:var(--muted);line-height:1.6;font-size:13px}
     <button data-page="bestanden"><span class="nav-icon">▧</span>Bestanden</button>
   </nav>
 </aside>
+
 <main class="main">
   <div class="topbar">
     <div class="breadcrumb" id="breadcrumb">FIETSACADEMIE / DASHBOARD</div>
@@ -141,35 +135,66 @@ p{color:var(--muted);line-height:1.6;font-size:13px}
 <div class="toast" id="toast"></div>
 
 <script>
-const KEY = "fietsacademie_data_v2";
-let data = JSON.parse(localStorage.getItem(KEY) || '{"chapters":[]}');
-let currentPage = "dashboard";
-let editingLesson = null;
-let editingChapter = null;
-let openChapters = {};
-let currentLesson = null;
-let lessonFiles = [];
-let db;
+const KEY = "fietsacademie_data_v3";
+const OLD_KEY = "fietsacademie_data_v2";
 
+function loadData(){
+  try{
+    const current=localStorage.getItem(KEY);
+    if(current)return JSON.parse(current);
+    const old=JSON.parse(localStorage.getItem(OLD_KEY)||"null");
+    if(old && Array.isArray(old.chapters)){
+      const lessons=[];
+      old.chapters.forEach(chapter=>{
+        (chapter.lessons||[]).forEach(lesson=>{
+          lessons.push({
+            id:lesson.id||uid(),
+            title:lesson.title||"Nieuwe les",
+            content:lesson.content||"",
+            subtitle:lesson.subtitle||"",
+            files:lesson.files||[],
+            done:!!lesson.done
+          });
+        });
+      });
+      return {lessons};
+    }
+  }catch(e){}
+  return {lessons:[]};
+}
+let data=loadData();
+if(!Array.isArray(data.lessons))data.lessons=[];
+let currentPage="dashboard";
+let editingLesson=null;
+let currentLesson=null;
+let lessonFiles=[];
+
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
 function save(){
-  localStorage.setItem(KEY,JSON.stringify(data));
-  updateDashboardIfVisible();
+  try{
+    localStorage.setItem(KEY,JSON.stringify(data));
+    updateDashboardIfVisible();
+  }catch(e){
+    notify("Opslagruimte vol. Verwijder eventueel een grote afbeelding.");
+  }
 }
 function notify(message){
   const el=document.getElementById("toast");
   el.textContent=message;
   el.style.display="block";
-  setTimeout(()=>el.style.display="none",2300);
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>el.style.display="none",2500);
 }
-function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
-function allLessons(){return data.chapters.flatMap(c=>c.lessons||[])}
+function escapeHtml(s){
+  return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function escapeAttr(s){return escapeHtml(s)}
 function progress(){
-  const lessons=allLessons();
-  return lessons.length?Math.round(lessons.filter(l=>l.done).length/lessons.length*100):0;
+  return data.lessons.length?Math.round(data.lessons.filter(l=>l.done).length/data.lessons.length*100):0;
 }
 function updateDashboardIfVisible(){
-  if(currentPage==="dashboard") renderDashboard();
-  if(currentPage==="opleiding") renderOpleiding();
+  if(currentPage==="dashboard")renderDashboard();
+  if(currentPage==="opleiding")renderOpleiding();
 }
 function go(page){
   currentPage=page;
@@ -185,221 +210,273 @@ function render(){
   else if(currentPage==="opleiding")renderOpleiding();
   else if(currentPage==="les-editor")renderLessonEditor();
   else if(currentPage==="les-bekijken")renderLessonView();
-  else if(currentPage==="hoofdstuk-editor")renderChapterEditor();
   else renderPlaceholder();
 }
+
 function renderDashboard(){
- const lessons=allLessons(),done=lessons.filter(l=>l.done).length,p=progress();
+ const lessons=data.lessons;
+ const done=lessons.filter(l=>l.done).length;
+ const p=progress();
+ const next=lessons.find(l=>!l.done);
  document.getElementById("app").innerHTML=`
- <div class="page-intro"><h1>Welkom in jouw fietsenmakeracademie!</h1>
- <p>Jouw persoonlijke leeromgeving voor fietstechniek, reparaties en praktijk.</p></div>
+ <div class="page-intro">
+  <h1>Welkom in jouw fietsenmakeracademie!</h1>
+  <p>Jouw persoonlijke leeromgeving voor fietstechniek, reparaties en praktijk.</p>
+ </div>
  <div class="stats">
-  <div class="stat"><strong>${data.chapters.length}</strong><span>HOOFDSTUKKEN</span></div>
-  <div class="stat"><strong>${lessons.length}</strong><span>LESSEN</span></div>
+  <div class="stat"><strong>${lessons.length}</strong><span>MIJN LESSEN</span></div>
+  <div class="stat"><strong>${done}</strong><span>AFGERONDE LESSEN</span></div>
   <div class="stat"><strong>${p}%</strong><span>OPLEIDINGSVOORTGANG</span></div>
  </div>
  <div class="panel">
   <h2>Mijn opleiding</h2>
   <p>Je totale cursusvoortgang</p>
   <div class="progress"><div style="width:${p}%"></div></div>
-  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
    <span class="muted" style="font-size:12px">${done} van ${lessons.length} lessen afgerond</span>
-   <button class="btn primary" onclick="go('opleiding')">Ga naar mijn opleiding →</button>
+   <button class="btn primary" onclick="go('opleiding')">Naar mijn opleiding →</button>
   </div>
  </div>
+ ${next?`<div class="panel">
+  <h2>Verder leren</h2>
+  <p>Ga verder met de volgende les op je lijst.</p>
+  <strong>${escapeHtml(next.title)}</strong>
+  <div style="margin-top:15px"><button class="btn primary" onclick="openLesson('${next.id}')">Les openen →</button></div>
+ </div>`:""}
  <div class="grid">
   <div class="module-card"><div class="symbol">⚙</div><strong>Fietstechniek</strong><p>Leer meer over onderdelen, systemen en de werking van fietsen.</p></div>
   <div class="module-card"><div class="symbol">🔧</div><strong>Reparaties</strong><p>Verzamel je eigen reparatiehandleidingen en stappenplannen.</p></div>
   <div class="module-card"><div class="symbol">✎</div><strong>Mijn notities</strong><p>Bewaar je eigen samenvattingen en technische aantekeningen.</p></div>
   <div class="module-card"><div class="symbol">▦</div><strong>Planning & voortgang</strong><p>Houd overzicht over je leerdoelen en cursusvoortgang.</p></div>
- </div>
- ${lessons.length?`<div class="panel" style="margin-top:18px"><h2>Verder leren</h2>${lessons.filter(l=>!l.done).slice(0,3).map(l=>`<div class="lesson"><div class="lesson-name"><strong>${escapeHtml(l.title)}</strong><small>${escapeHtml(chapterName(l.chapterId))}</small></div><button class="btn small" onclick="openLesson('${l.id}')">Open les</button></div>`).join("")}</div>`:""}
- `;
+ </div>`;
 }
-function chapterName(id){return data.chapters.find(c=>c.id===id)?.title||"Hoofdstuk"}
+
 function renderOpleiding(){
- const lessons=allLessons();
+ const lessons=data.lessons;
+ const done=lessons.filter(l=>l.done).length;
  document.getElementById("app").innerHTML=`
- <div class="page-intro"><h1>Mijn opleiding</h1><p>Beheer hier je eigen cursus, hoofdstukken en lesmateriaal.</p></div>
+ <div class="page-intro">
+  <h1>Mijn opleiding</h1>
+  <p>Jouw persoonlijke overzicht van alle lessen. Voeg zelf lessen toe en bouw je eigen cursusmap op.</p>
+ </div>
  <div class="panel">
   <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-   <div><h2>Cursusoverzicht</h2><p style="margin:0">${data.chapters.length} hoofdstukken · ${lessons.length} lessen · ${progress()}% afgerond</p></div>
-   <button class="btn primary" onclick="newChapter()">＋ Hoofdstuk toevoegen</button>
+   <div><h2>Mijn lessen</h2><p style="margin:0">${lessons.length} lessen · ${done} afgerond · ${progress()}% voltooid</p></div>
+   <button class="btn primary" onclick="newLesson()">＋ Nieuwe les toevoegen</button>
   </div>
   <div class="progress"><div style="width:${progress()}%"></div></div>
  </div>
- <div id="chapters">
- ${data.chapters.length?data.chapters.map((c,i)=>chapterHtml(c,i)).join(""):`<div class="empty"><div style="font-size:30px;margin-bottom:12px">▤</div><strong>Je cursus is nog leeg</strong><p>Voeg je eerste hoofdstuk toe om te beginnen.</p><button class="btn primary" onclick="newChapter()">＋ Eerste hoofdstuk toevoegen</button></div>`}
+ <div>
+ ${lessons.length?lessons.map((l,i)=>`
+  <div class="lesson-card">
+   <div class="lesson-number">${String(i+1).padStart(2,"0")}</div>
+   <div class="lesson-info" onclick="openLesson('${l.id}')">
+    <strong>${escapeHtml(l.title)}</strong>
+    <small class="${l.done?"completed":""}">${l.done?"✓ Afgerond":(l.subtitle?escapeHtml(l.subtitle):"Klik om je les te openen")}</small>
+   </div>
+   <input class="lesson-check" title="Markeer als afgerond" type="checkbox" ${l.done?"checked":""} onchange="toggleDone('${l.id}')">
+   <span class="lesson-open" onclick="openLesson('${l.id}')">Open les →</span>
+   <button class="btn small" title="Bewerken" onclick="editLesson('${l.id}')">✎</button>
+   <button class="btn small danger" title="Verwijderen" onclick="deleteLesson('${l.id}')">×</button>
+  </div>`).join(""):`
+  <div class="empty">
+   <div class="symbol">▤</div>
+   <strong>Je hebt nog geen lessen toegevoegd</strong>
+   <p>Maak je eerste les aan en begin met het opbouwen van je eigen cursus.</p>
+   <button class="btn primary" onclick="newLesson()">＋ Eerste les toevoegen</button>
+  </div>`}
  </div>`;
 }
-function chapterHtml(c,i){
- const ls=c.lessons||[],done=ls.filter(l=>l.done).length;
- return `<section class="chapter">
-  <div class="chapter-head">
-   <div class="chapter-title" onclick="toggleChapter('${c.id}')" style="cursor:pointer">
-    <div class="chapter-number">${String(i+1).padStart(2,"0")}</div>
-    <div class="chapter-info"><strong>${escapeHtml(c.title)}</strong><small>${ls.length} lessen · ${done} afgerond</small></div>
-   </div>
-   <div class="actions">
-    <button class="btn small" onclick="event.stopPropagation();newLesson('${c.id}')">＋ Les</button>
-    <button class="btn small" onclick="event.stopPropagation();editChapter('${c.id}')">Bewerken</button>
-    <button class="btn small danger" onclick="event.stopPropagation();deleteChapter('${c.id}')">Verwijderen</button>
-    <button class="btn small" onclick="toggleChapter('${c.id}')">${openChapters[c.id]?"Inklappen":"Openen"}⌄</button>
-   </div>
-  </div>
-  ${openChapters[c.id]?`<div class="chapter-content">
-   ${ls.length?ls.map(l=>`<div class="lesson">
-    <input class="lesson-check" type="checkbox" ${l.done?"checked":""} onchange="toggleDone('${l.id}')">
-    <div class="lesson-name"><strong class="${l.done?"done":""}">${escapeHtml(l.title)}</strong><small>${l.content?"Lesmateriaal beschikbaar":"Nog geen lesmateriaal"}</small></div>
-    <div class="lesson-buttons">
-     <button class="btn small" onclick="openLesson('${l.id}')">Open</button>
-     <button class="btn small" onclick="editLesson('${l.id}')">✎ <span class="edit-label">Bewerken</span></button>
-     <button class="btn small danger" onclick="deleteLesson('${l.id}')">×</button>
-    </div>
-   </div>`).join(""):`<div class="empty">Dit hoofdstuk bevat nog geen lessen.</div>`}
-   <button class="btn small" style="margin-top:12px" onclick="newLesson('${c.id}')">＋ Les toevoegen</button>
-  </div>`:""}
- </section>`;
+
+function newLesson(){
+ editingLesson=null;
+ lessonFiles=[];
+ currentPage="les-editor";
+ renderLessonEditor();
 }
-function toggleChapter(id){openChapters[id]=!openChapters[id];renderOpleiding()}
-function newChapter(){editingChapter=null;currentPage="hoofdstuk-editor";renderChapterEditor()}
-function editChapter(id){editingChapter=id;currentPage="hoofdstuk-editor";renderChapterEditor()}
-function renderChapterEditor(){
- const c=data.chapters.find(x=>x.id===editingChapter);
- document.getElementById("app").innerHTML=`
- <div class="editor-layout"><span class="back" onclick="go('opleiding')">← Terug naar mijn opleiding</span>
- <div class="page-intro"><h1>${c?"Hoofdstuk bewerken":"Nieuw hoofdstuk"}</h1><p>Geef je hoofdstuk een duidelijke naam.</p></div>
- <div class="panel">
-  <div class="field"><label>Naam van het hoofdstuk</label><input id="chapterTitle" placeholder="Bijvoorbeeld: De fietsaandrijving" value="${c?escapeAttr(c.title):""}"></div>
-  <div class="field"><label>Beschrijving (optioneel)</label><textarea id="chapterDesc" style="min-height:100px" placeholder="Waar gaat dit hoofdstuk over?">${c?escapeHtml(c.description||""):""}</textarea></div>
-  <div class="actions"><button class="btn primary" onclick="saveChapter()">Hoofdstuk opslaan</button><button class="btn" onclick="go('opleiding')">Annuleren</button></div>
- </div></div>`;
-}
-function saveChapter(){
- const title=document.getElementById("chapterTitle").value.trim();
- if(!title){notify("Vul eerst een hoofdstuktitel in.");return}
- const description=document.getElementById("chapterDesc").value;
- if(editingChapter){const c=data.chapters.find(x=>x.id===editingChapter);c.title=title;c.description=description}
- else data.chapters.push({id:uid(),title,description,lessons:[]});
- save();notify("Hoofdstuk opgeslagen!");go("opleiding");
-}
-function deleteChapter(id){
- const c=data.chapters.find(x=>x.id===id);
- if(!confirm(`Weet je zeker dat je "${c.title}" en alle lessen daarin wilt verwijderen?`))return;
- data.chapters=data.chapters.filter(x=>x.id!==id);save();renderOpleiding();notify("Hoofdstuk verwijderd.");
-}
-function newLesson(chapterId){editingLesson=null;currentLesson={chapterId};lessonFiles=[];currentPage="les-editor";renderLessonEditor()}
 function editLesson(id){
- const found=findLesson(id);if(!found)return;
- editingLesson=id;currentLesson={chapterId:found.chapter.id};lessonFiles=[...(found.lesson.files||[])];currentPage="les-editor";renderLessonEditor();
-}
-function findLesson(id){
- for(const chapter of data.chapters){const lesson=(chapter.lessons||[]).find(l=>l.id===id);if(lesson)return {chapter,lesson}}
- return null;
+ editingLesson=id;
+ const l=data.lessons.find(x=>x.id===id);
+ if(!l)return;
+ lessonFiles=[...(l.files||[])];
+ currentPage="les-editor";
+ renderLessonEditor();
 }
 function renderLessonEditor(){
- const found=editingLesson?findLesson(editingLesson):null;
- const l=found?.lesson;
+ const l=editingLesson?data.lessons.find(x=>x.id===editingLesson):null;
  document.getElementById("app").innerHTML=`
- <div class="editor-layout"><span class="back" onclick="go('opleiding')">← Terug naar mijn opleiding</span>
- <div class="page-intro"><h1>${l?"Les bewerken":"Nieuwe les maken"}</h1><p>Voeg je eigen lesmateriaal toe aan je opleiding.</p></div>
- <div class="panel">
-  <div class="field"><label>Hoofdstuk</label><input value="${escapeAttr(chapterName(currentLesson.chapterId))}" disabled></div>
-  <div class="field"><label>Lesnaam</label><input id="lessonTitle" placeholder="Bijvoorbeeld: Werking van een derailleur" value="${l?escapeAttr(l.title):""}"></div>
-  <div class="field"><label>Korte omschrijving (optioneel)</label><input id="lessonSubtitle" placeholder="Een korte introductie van deze les" value="${l?escapeAttr(l.subtitle||""):""}"></div>
-  <div class="field"><label>Lesmateriaal</label>
-   <div class="editor-toolbar">
-    <button onclick="formatText('bold')"><b>Vet</b></button>
-    <button onclick="formatText('italic')"><i>Schuin</i></button>
-    <button onclick="insertHeading()">Kop toevoegen</button>
-    <button onclick="insertList()">Opsomming</button>
+ <div class="editor-layout">
+  <span class="back" onclick="go('opleiding')">← Terug naar mijn opleiding</span>
+  <div class="page-intro">
+   <h1>${l?"Les bewerken":"Nieuwe les maken"}</h1>
+   <p>Maak je eigen lespagina en voeg je lesmateriaal toe.</p>
+  </div>
+  <div class="panel">
+   <div class="field">
+    <label>Naam van de les</label>
+    <input id="lessonTitle" placeholder="Bijvoorbeeld: De basis van de fiets" value="${l?escapeAttr(l.title):""}">
    </div>
-   <textarea id="lessonContent" placeholder="Schrijf hier je lesmateriaal...">${l?escapeHtml(l.content||""):""}</textarea>
-   <p>Tip: je kunt hier tekst schrijven, kopjes maken en opsommingen toevoegen.</p>
+   <div class="field">
+    <label>Korte omschrijving (optioneel)</label>
+    <input id="lessonSubtitle" placeholder="Waar gaat deze les over?" value="${l?escapeAttr(l.subtitle||""):""}">
+   </div>
+   <div class="field">
+    <label>Mijn lesmateriaal</label>
+    <div class="editor-toolbar">
+     <button onclick="formatText('bold')"><b>Vet</b></button>
+     <button onclick="formatText('italic')"><i>Schuin</i></button>
+     <button onclick="insertHeading()">Kop toevoegen</button>
+     <button onclick="insertList()">Opsomming</button>
+    </div>
+    <textarea id="lessonContent" placeholder="Typ hier zelf de inhoud van je les...">${l?escapeHtml(l.content||""):""}</textarea>
+    <p>Hier kun je zelf uitleg, aantekeningen, begrippen en samenvattingen typen.</p>
+   </div>
+   <div class="field">
+    <label>Afbeeldingen toevoegen</label>
+    <input class="file-input" id="fileUpload" type="file" accept="image/*" multiple onchange="addFiles(event)">
+    <button class="btn" onclick="document.getElementById('fileUpload').click()">＋ Afbeeldingen kiezen</button>
+    <div class="file-list" id="fileList">${renderFileList()}</div>
+    <p>Afbeeldingen worden bij deze les bewaard. Kies bij voorkeur afbeeldingen van maximaal 3 MB per stuk.</p>
+   </div>
+   <div class="actions">
+    <button class="btn primary" onclick="saveLesson()">Les opslaan</button>
+    <button class="btn" onclick="go('opleiding')">Annuleren</button>
+   </div>
   </div>
-  <div class="field"><label>Afbeeldingen en PDF-bestanden</label>
-   <input class="file-input" id="fileUpload" type="file" accept="image/*,.pdf" multiple onchange="addFiles(event)">
-   <button class="btn" onclick="document.getElementById('fileUpload').click()">＋ Bestanden toevoegen</button>
-   <div class="file-list" id="fileList">${renderFileList()}</div>
-   <p>Bestanden worden lokaal in deze browser bewaard. Grote bestanden kunnen de beschikbare opslagruimte overschrijden.</p>
-  </div>
-  <div class="actions"><button class="btn primary" onclick="saveLesson()">Les opslaan</button><button class="btn" onclick="go('opleiding')">Annuleren</button></div>
- </div></div>`;
+ </div>`;
 }
 function renderFileList(){
- return lessonFiles.map((f,i)=>`<div class="file-item"><span>${f.type.startsWith("image/")?"🖼":"📄"} ${escapeHtml(f.name)}</span><button class="btn small danger" onclick="removeFile(${i})">Verwijderen</button></div>`).join("");
+ return lessonFiles.map((f,i)=>`
+ <div class="file-item">
+  <div class="file-item-top">
+   <strong>🖼 ${escapeHtml(f.name)}</strong>
+   <button class="btn small danger" onclick="removeFile(${i})">Verwijderen</button>
+  </div>
+  <img src="${f.data}" alt="${escapeAttr(f.name)}">
+ </div>`).join("");
 }
 function addFiles(event){
  const files=Array.from(event.target.files);
  files.forEach(file=>{
-  if(file.size>3*1024*1024){notify(file.name+" is groter dan 3 MB en is overgeslagen.");return}
+  if(!file.type.startsWith("image/"))return;
+  if(file.size>3*1024*1024){
+   notify(file.name+" is groter dan 3 MB.");
+   return;
+  }
   const reader=new FileReader();
-  reader.onload=()=>{lessonFiles.push({name:file.name,type:file.type,data:reader.result});document.getElementById("fileList").innerHTML=renderFileList()};
+  reader.onload=()=>{
+   lessonFiles.push({name:file.name,type:file.type,data:reader.result});
+   const list=document.getElementById("fileList");
+   if(list)list.innerHTML=renderFileList();
+  };
   reader.readAsDataURL(file);
  });
  event.target.value="";
 }
-function removeFile(i){lessonFiles.splice(i,1);document.getElementById("fileList").innerHTML=renderFileList()}
+function removeFile(i){
+ lessonFiles.splice(i,1);
+ const list=document.getElementById("fileList");
+ if(list)list.innerHTML=renderFileList();
+}
 function formatText(type){
  const el=document.getElementById("lessonContent");
  const start=el.selectionStart,end=el.selectionEnd;
  const selected=el.value.slice(start,end)||"tekst";
  const wrapped=type==="bold"?"**"+selected+"**":"*"+selected+"*";
- el.setRangeText(wrapped,start,end,"select");el.focus();
+ el.setRangeText(wrapped,start,end,"select");
+ el.focus();
 }
 function insertHeading(){
- const el=document.getElementById("lessonContent");const start=el.selectionStart;
- el.setRangeText("\n\n## Nieuwe kop\n",start,start,"end");el.focus();
+ const el=document.getElementById("lessonContent");
+ const start=el.selectionStart;
+ el.setRangeText("\n\n## Nieuwe kop\n",start,start,"end");
+ el.focus();
 }
 function insertList(){
- const el=document.getElementById("lessonContent");const start=el.selectionStart;
- el.setRangeText("\n- Eerste punt\n- Tweede punt\n- Derde punt\n",start,start,"end");el.focus();
+ const el=document.getElementById("lessonContent");
+ const start=el.selectionStart;
+ el.setRangeText("\n- Eerste punt\n- Tweede punt\n- Derde punt\n",start,start,"end");
+ el.focus();
 }
 function saveLesson(){
  const title=document.getElementById("lessonTitle").value.trim();
- if(!title){notify("Vul eerst een lestitel in.");return}
- const subtitle=document.getElementById("lessonSubtitle").value;
+ if(!title){notify("Vul eerst een naam voor je les in.");return}
+ const subtitle=document.getElementById("lessonSubtitle").value.trim();
  const content=document.getElementById("lessonContent").value;
  if(editingLesson){
-  const f=findLesson(editingLesson);Object.assign(f.lesson,{title,subtitle,content,files:lessonFiles});
+  const l=data.lessons.find(x=>x.id===editingLesson);
+  if(!l)return;
+  Object.assign(l,{title,subtitle,content,files:lessonFiles});
  }else{
-  const chapter=data.chapters.find(c=>c.id===currentLesson.chapterId);
-  chapter.lessons.push({id:uid(),title,subtitle,content,files:lessonFiles,done:false});
-  openChapters[chapter.id]=true;
+  data.lessons.push({id:uid(),title,subtitle,content,files:lessonFiles,done:false});
  }
- save();notify("Les opgeslagen!");go("opleiding");
+ save();
+ notify("Je les is opgeslagen!");
+ go("opleiding");
 }
 function deleteLesson(id){
- const f=findLesson(id);if(!f)return;
- if(!confirm(`Weet je zeker dat je "${f.lesson.title}" wilt verwijderen?`))return;
- f.chapter.lessons=f.chapter.lessons.filter(l=>l.id!==id);save();renderOpleiding();notify("Les verwijderd.");
+ const l=data.lessons.find(x=>x.id===id);
+ if(!l)return;
+ if(!confirm('Weet je zeker dat je "'+l.title+'" wilt verwijderen?'))return;
+ data.lessons=data.lessons.filter(x=>x.id!==id);
+ save();
+ renderOpleiding();
+ notify("Les verwijderd.");
 }
 function toggleDone(id){
- const f=findLesson(id);if(!f)return;
- f.lesson.done=!f.lesson.done;save();renderOpleiding();
+ const l=data.lessons.find(x=>x.id===id);
+ if(!l)return;
+ l.done=!l.done;
+ save();
+ if(currentPage==="opleiding")renderOpleiding();
 }
-function openLesson(id){currentLesson={id};currentPage="les-bekijken";renderLessonView()}
+function openLesson(id){
+ currentLesson=id;
+ currentPage="les-bekijken";
+ renderLessonView();
+}
 function renderLessonView(){
- const f=findLesson(currentLesson.id);if(!f){go("opleiding");return}
- const l=f.lesson;
+ const l=data.lessons.find(x=>x.id===currentLesson);
+ if(!l){go("opleiding");return}
  document.getElementById("app").innerHTML=`
  <span class="back" onclick="go('opleiding')">← Terug naar mijn opleiding</span>
- <div class="page-intro"><p>${escapeHtml(f.chapter.title)}</p><h1>${escapeHtml(l.title)}</h1><p>${escapeHtml(l.subtitle||"")}</p></div>
+ <div class="page-intro">
+  <p>MIJN OPLEIDING / LES</p>
+  <h1>${escapeHtml(l.title)}</h1>
+  <p>${escapeHtml(l.subtitle||"")}</p>
+ </div>
  <div class="panel">
-  <div class="lesson-view">${formatContent(l.content||"Er is nog geen lesmateriaal toegevoegd.")}
-  ${ (l.files||[]).map(file=>file.type.startsWith("image/")?`<div><img src="${file.data}" alt="${escapeAttr(file.name)}"></div>`:`<p>📄 <a href="${file.data}" download="${escapeAttr(file.name)}">${escapeHtml(file.name)} – PDF openen/downloaden</a></p>`).join("")}
+  <div class="lesson-content">${formatContent(l.content||"Je hebt nog geen lesmateriaal geschreven. Klik op bewerken om te beginnen.")}</div>
+  ${(l.files||[]).map(f=>`<div style="margin-top:18px"><img src="${f.data}" alt="${escapeAttr(f.name)}" style="max-width:100%;max-height:500px;border-radius:8px"><p>${escapeHtml(f.name)}</p></div>`).join("")}
+  <div class="actions" style="margin-top:28px;padding-top:18px;border-top:1px solid var(--line)">
+   <button class="btn primary" onclick="toggleDone('${l.id}');renderLessonView()">${l.done?"✓ Afgerond – ongedaan maken":"Les als afgerond markeren"}</button>
+   <button class="btn" onclick="editLesson('${l.id}')">✎ Les bewerken</button>
   </div>
-  <div class="actions" style="margin-top:25px"><button class="btn ${l.done?"":"primary"}" onclick="toggleDone('${l.id}');openLesson('${l.id}')">${l.done?"✓ Les afgerond – ongedaan maken":"Les als afgerond markeren"}</button><button class="btn" onclick="editLesson('${l.id}')">Les bewerken</button></div>
  </div>`;
 }
 function formatContent(text){
- return escapeHtml(text).replace(/^### (.*)$/gm,"<h3>$1</h3>").replace(/^## (.*)$/gm,"<h2>$1</h2>").replace(/^# (.*)$/gm,"<h1>$1</h1>").replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>").replace(/\*(.*?)\*/g,"<em>$1</em>").replace(/^- (.*)$/gm,"• $1").replace(/\n/g,"<br>");
+ return escapeHtml(text)
+  .replace(/^### (.*)$/gm,"<h3>$1</h3>")
+  .replace(/^## (.*)$/gm,"<h2>$1</h2>")
+  .replace(/^# (.*)$/gm,"<h2>$1</h2>")
+  .replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>")
+  .replace(/\*(.*?)\*/g,"<em>$1</em>")
+  .replace(/^- (.*)$/gm,"• $1")
+  .replace(/\n/g,"<br>");
 }
-function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function escapeAttr(s){return escapeHtml(s).replace(/`/g,"&#96;")}
 function renderPlaceholder(){
- const names={techniek:"Fietstechniek",reparaties:"Reparaties",notities:"Mijn notities",praktijk:"Praktijk & werkzaamheden",planning:"Planning & voortgang",oefenen:"Oefenen & toetsen",bestanden:"Bestanden"};
- document.getElementById("app").innerHTML=`<div class="page-intro"><h1>${names[currentPage]||currentPage}</h1><p>Dit onderdeel gaan we later samen verder opbouwen.</p></div><div class="panel"><h2>${names[currentPage]||currentPage}</h2><p>De basis van jouw academie staat klaar. We kunnen dit onderdeel stap voor stap uitbreiden.</p><button class="btn primary" onclick="go('opleiding')">Naar mijn opleiding →</button></div>`;
+ const names={
+  techniek:"Fietstechniek",
+  reparaties:"Reparaties",
+  notities:"Mijn notities",
+  praktijk:"Praktijk & werkzaamheden",
+  planning:"Planning & voortgang",
+  oefenen:"Oefenen & toetsen",
+  bestanden:"Bestanden"
+ };
+ document.getElementById("app").innerHTML=`
+ <div class="page-intro"><h1>${names[currentPage]||currentPage}</h1><p>Dit onderdeel gaan we later samen verder opbouwen.</p></div>
+ <div class="panel"><h2>${names[currentPage]||currentPage}</h2><p>De basis van jouw academie staat klaar. We kunnen dit onderdeel stap voor stap uitbreiden.</p><button class="btn primary" onclick="go('opleiding')">Naar mijn opleiding →</button></div>`;
 }
 render();
 </script>
