@@ -167,8 +167,29 @@ const techniek = [
 
 let currentPage="dashboard";
 let currentLessonId=null;
-let lessons=JSON.parse(localStorage.getItem("fietsacademie_data_v3")||"null")||[];
-let completed=JSON.parse(localStorage.getItem("fietsCompleted")||"[]");
+
+// Lees opgeslagen gegevens veilig in, ook als ze uit een oudere versie komen.
+function readStoredArray(key, fallback){
+ try{
+  const value=JSON.parse(localStorage.getItem(key)||"null");
+  if(Array.isArray(value)) return value;
+  if(value && Array.isArray(value.lessons)) return value.lessons;
+  return fallback;
+ }catch(error){
+  console.warn("Opgeslagen gegevens konden niet worden gelezen:",key,error);
+  return fallback;
+ }
+}
+let lessons=readStoredArray("fietsacademie_data_v3",[])
+ .filter(item=>item && typeof item==="object")
+ .map((item,index)=>({
+  id:item.id||makeId(), title:item.title||item.name||("Les "+(index+1)),
+  description:item.description||"", learning:item.learning||"",
+  material:item.material||"", exercises:item.exercises||"",
+  homework:item.homework||"", summary:item.summary||"",
+  images:Array.isArray(item.images)?item.images:[], done:Boolean(item.done)
+ }));
+let completed=readStoredArray("fietsCompleted",[]).filter(item=>typeof item==="string");
 
 function saveData(){
  localStorage.setItem("fietsacademie_data_v3",JSON.stringify(lessons));
@@ -176,9 +197,11 @@ function saveData(){
 }
 function migrateOldData(){
  if(lessons.length) return;
- const old=JSON.parse(localStorage.getItem("fietsChapters")||"[]");
+ let old=[];
+ try{old=JSON.parse(localStorage.getItem("fietsChapters")||"[]");}catch(error){old=[];}
+ if(!Array.isArray(old)) old=[];
  old.forEach(chapter=>{
-  (chapter.lessons||[]).forEach(oldLesson=>{
+  (chapter && Array.isArray(chapter.lessons)?chapter.lessons:[]).forEach(oldLesson=>{
    lessons.push({
     id:oldLesson.id||makeId(),
     title:oldLesson.name||"Nieuwe les",
